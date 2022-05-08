@@ -3,16 +3,11 @@
 ### FORK
 Docker Composerize the original is from github \
 https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
-***
-**MY REPO**  [Docker HUB](https://hub.docker.com/r/alcapone1933/composerize) https://hub.docker.com/r/alcapone1933/composerize
+#  Docker HUB
+[Docker REPO](https://hub.docker.com/r/alcapone1933/composerize)
+
 
 * * *
-
-* * *
-
-* * *
-
-#######################################################################
 
 ### Docker CLI
 
@@ -45,15 +40,11 @@ volumes:
 
 * * *
 
-* * *
-
 ## Volume params
 
 | Name    | Value   | Example                    |
 |---------|---------|----------------------------|
 |  Data   | volume  | composerize_data:/var/www/ |
-
-* * *
 
 * * *
 
@@ -63,7 +54,3 @@ volumes:
 | Name          | Value     | Example                        |
 |---------------|-----------|--------------------------------|
 | Timezone      | TZ        | Europe/Berlin                  |
-
-* * *
-
-* * *
