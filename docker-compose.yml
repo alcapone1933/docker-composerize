@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  web:
+    build:
+      dockerfile: ./Dockerfile
+    image: alcapone1933/composerize:v1.0.6
+    # image: alcapone1933/composerize:latest
+    container_name: composerize
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      # - TZ=Europe/Berlin	
+      - TZ=Etc/GMT-1
+    # volumes:
+      # - data:/var/www
+
+# volumes:
+  # data:
