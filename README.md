@@ -1,4 +1,4 @@
-# Composerize in Docker
+# Composerize
 
 ### FORK
 Docker Composerize the original is from github \
