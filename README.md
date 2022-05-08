@@ -2,13 +2,7 @@
 
 Docker Composerize the original is from github https://github.com/magicmark/composerize or here https://github.com/Griefed/docker-App-Collection
 
-* * *
-
-* * *
-
-* * *
-
-#######################################################################
+***
 
 ### \# Docker cli
 
