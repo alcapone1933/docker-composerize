@@ -1,10 +1,20 @@
 # Composerize in Docker
 
-Docker Composerize the original is from github https://github.com/magicmark/composerize or here https://github.com/Griefed/docker-App-Collection
-
+### FORK
+Docker Composerize the original is from github \
+https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
 ***
+**MY REPO**  [Docker HUB](https://hub.docker.com/r/alcapone1933/composerize) https://hub.docker.com/r/alcapone1933/composerize
 
-### \# Docker cli
+* * *
+
+* * *
+
+* * *
+
+#######################################################################
+
+### Docker CLI
 
 ```bash
 docker run -d \
@@ -16,7 +26,7 @@ docker run -d \
     alcapone1933/composerize
 ```
 
-### \# Docker Compose
+### Docker Compose
 
 ```yaml
 version: "3.9"
