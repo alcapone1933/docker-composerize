@@ -4,7 +4,7 @@
 Docker Composerize the original is from github \
 https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
 #  Docker REPO
-(https://hub.docker.com/r/alcapone1933/composerize)
+https://hub.docker.com/r/alcapone1933/composerize
 * * *
 ### Docker CLI
 
