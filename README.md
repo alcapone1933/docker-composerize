@@ -19,8 +19,6 @@ https://github.com/magicmark/composerize OR Here https://github.com/Griefed/dock
 ```bash
 docker run -d \
     -p 8080:80 \
-    -e TZ=Europe/Berlin \
-    -v composerize_data:/var/www/ \  #optional
     --restart always \
     --name composerize \
     alcapone1933/composerize
@@ -38,9 +36,9 @@ services:
     ports:
       - 8080:80
     environment:
-      - TZ=Europe/Berlin
-    volumes:                        #optional
-      - data:/var/www/
+      - TZ=Europe/Berlin            # optional
+    volumes:
+      - data:/var/www/              # optional
 volumes:
   data:
 ```
@@ -51,10 +49,9 @@ volumes:
 
 ## Volume params
 
-
-| Name    |Value     |Example                               |
-|--------|-----------|--------------------------------------|
-| volume | Data      | composerize_data:/var/www/           |
+| Name    | Value   | Example                    |
+|---------|---------|----------------------------|
+|  Data   | volume  | composerize_data:/var/www/ |
 
 * * *
 
@@ -63,9 +60,9 @@ volumes:
 ## Env params
 
 
-|Name    |Value      |Example                              |
-|--------|-----------|-------------------------------------|
-| TZ     | Timezone  | Europe/Berlin                       |
+| Name          | Value     | Example                        |
+|---------------|-----------|--------------------------------|
+| Timezone      | TZ        | Europe/Berlin                  |
 
 * * *
 
