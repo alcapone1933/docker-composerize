@@ -1,6 +1,8 @@
 name: Docker Hub
 
 on:
+  schedule:
+    - cron: '30 5 * */2 1-5'
   push:
     branches:
       - 'master'
