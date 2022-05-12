@@ -1,4 +1,4 @@
-name: Docker Hub
+name: Docker Hub v1.0.6
 
 on:
   schedule:
