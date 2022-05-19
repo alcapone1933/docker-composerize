@@ -1,8 +1,6 @@
 name: Docker Hub v1.0.6
 
 on:
-  schedule:
-    - cron: '30 3 1 2 *'
   push:
     branches:
       - 'v1.0.6'
