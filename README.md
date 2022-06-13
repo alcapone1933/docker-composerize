@@ -13,7 +13,8 @@ docker run -d \
     -p 8080:80 \
     --restart always \
     --name composerize \
-    alcapone1933/composerize
+    alcapone1933/composerize:latest
+
 ```
 
 ### Docker Compose
@@ -22,7 +23,7 @@ docker run -d \
 version: "3.9"
 services:
   composerize:
-    image: alcapone1933/composerize
+    image: alcapone1933/composerize:latest
     container_name: composerize
     restart: always
     ports:
@@ -33,6 +34,7 @@ services:
       - data:/var/www/              # optional
 volumes:
   data:
+
 ```
 
 * * *
