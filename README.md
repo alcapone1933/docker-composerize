@@ -13,7 +13,7 @@ docker run -d \
     -p 8080:80 \
     --restart always \
     --name composerize \
-    alcapone1933/composerize
+    alcapone1933/composerize:v1.0.6
 ```
 
 ### Docker Compose
@@ -22,7 +22,7 @@ docker run -d \
 version: "3.9"
 services:
   composerize:
-    image: alcapone1933/composerize
+    image: alcapone1933/composerize:v1.0.6
     container_name: composerize
     restart: always
     ports:
