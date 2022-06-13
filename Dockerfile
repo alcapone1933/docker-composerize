@@ -1,4 +1,4 @@
-FROM alcapone1933/ubuntu:21.04
+FROM alcapone1933/ubuntu:22.04
 LABEL maintainer="alcapone1933 alcapone1933@cosanostra-cloud.de"
 WORKDIR /var/www/
 ENV TZ=Etc/GMT-1
