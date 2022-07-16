@@ -1,5 +1,5 @@
 # Composerize
-[![Composerize](https://raw.githubusercontent.com/alcapone1933/images/master/png/composerize/composerize_1450x586.png)](https://www.composerize.com/)
+[![Composerize](https://raw.githubusercontent.com/alcapone1933/docker-composerize/master/img/docker-composerize.png)](https://www.composerize.com/)
 ### FORK
 Docker Composerize the original is from github \
 https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
@@ -13,7 +13,8 @@ docker run -d \
     -p 8080:80 \
     --restart always \
     --name composerize \
-    alcapone1933/composerize:v1.0.6
+    alcapone1933/composerize:latest
+
 ```
 
 ### Docker Compose
@@ -22,17 +23,18 @@ docker run -d \
 version: "3.9"
 services:
   composerize:
-    image: alcapone1933/composerize:v1.0.6
+    image: alcapone1933/composerize:latest
     container_name: composerize
     restart: always
     ports:
       - 8080:80
     environment:
       - TZ=Europe/Berlin            # optional
-    volumes:
-      - data:/var/www/              # optional
-volumes:
-  data:
+    # volumes:
+      # - data:/var/www/              # optional
+# volumes:
+  # data:
+
 ```
 
 * * *
