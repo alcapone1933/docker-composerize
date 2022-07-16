@@ -15,12 +15,13 @@ RUN apt-get update && \
     yarn add composerize && \
     make build && \
     cp -r /composerize-website/build/* /var/www/ && \
+    cd /composerize-website/build/ && \
+    tar cfvz /opt/composerize.tar.gz ./*
     rm -rf /composerize-website && \
     rm -rf /git && \
     rm -rf /var/lib/apt/lists/*
 
 COPY 000-default.conf /etc/apache2/sites-available/
-# COPY --from=builder /composerize-website/build/* /var/www/
 WORKDIR /var/www/
 EXPOSE 80
 CMD ["apache2ctl","-D","FOREGROUND"]
@@ -35,7 +36,8 @@ CMD ["apache2ctl","-D","FOREGROUND"]
 #    rm -r /var/www/html  && \
 #    rm -rf /var/lib/apt/lists/*
 # COPY 000-default.conf /etc/apache2/sites-available/
-# COPY --from=builder /composerize-website/build/* /var/www/
+# COPY --from=builder /opt/composerize.tar.gz /opt/
+# RUN tar xfvz /opt/composerize.tar.gz -C /var/www/ && rm /opt/composerize.tar.gz
 # WORKDIR /var/www/
 # EXPOSE 80
 # CMD ["apache2ctl","-D","FOREGROUND"]
