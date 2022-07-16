@@ -1,6 +1,5 @@
 .git
 .github
-composerize
 img
 docker-compose.yml
 README.md
