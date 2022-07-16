@@ -1,5 +1,5 @@
 # Composerize
-[![Composerize](https://raw.githubusercontent.com/alcapone1933/images/master/png/composerize/composerize_1450x586.png)](https://www.composerize.com/)
+[![Composerize](https://raw.githubusercontent.com/alcapone1933/docker-composerize/master/img/docker-composerize.png)](https://www.composerize.com/)
 ### FORK
 Docker Composerize the original is from github \
 https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
@@ -30,10 +30,10 @@ services:
       - 8080:80
     environment:
       - TZ=Europe/Berlin            # optional
-    volumes:
-      - data:/var/www/              # optional
-volumes:
-  data:
+    # volumes:
+      # - data:/var/www/              # optional
+# volumes:
+  # data:
 
 ```
 
