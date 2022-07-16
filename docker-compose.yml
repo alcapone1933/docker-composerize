@@ -1,8 +1,8 @@
 version: "3.9"
 services:
   web:
-    build:
-      dockerfile: ./Dockerfile
+    # build:
+      # dockerfile: ./Dockerfile
     image: alcapone1933/composerize:latest
     container_name: composerize
     restart: always
@@ -10,9 +10,9 @@ services:
       - 8080:80
     environment:
       - TZ=Europe/Berlin	
-    volumes:
-      - data:/var/www # optional
+    # volumes:
+      # - data:/var/www # optional
 
-volumes:
-  data:
-    name: composerize_data
+# volumes:
+  # data:
+    # name: composerize_data
