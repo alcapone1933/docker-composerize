@@ -16,7 +16,7 @@ RUN apt-get update && \
     make build && \
     cp -r /composerize-website/build/* /var/www/ && \
     cd /composerize-website/build/ && \
-    tar cfvz /opt/composerize.tar.gz ./* && \
+    tar cfvz /opt/composerize.tar.gz * && \
     rm -rf /composerize-website && \
     rm -rf /git && \
     rm -rf /var/lib/apt/lists/*
