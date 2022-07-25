@@ -29,12 +29,7 @@ services:
     ports:
       - 8080:80
     environment:
-      - TZ=Europe/Berlin            # optional
-    # volumes:
-      # - data:/var/www/              # optional
-# volumes:
-  # data:
-
+      - TZ=Europe/Berlin
 ```
 
 * * *
