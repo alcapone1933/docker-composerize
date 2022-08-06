@@ -1,9 +1,9 @@
 name: Docker Hub
 
-on:
-  push:
-    branches:
-      - 'master'
+# on:
+  # push:
+    # branches:
+      # - 'master'
 
 jobs:
   docker-builder:
