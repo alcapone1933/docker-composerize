@@ -5,3 +5,4 @@ img
 docker-compose.yml
 README.md
 Dockerfile.builder
+.drone.yml
