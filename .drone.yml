@@ -62,7 +62,8 @@ steps:
     commands:
       - sleep 5
       - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin      
-      - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder --push .
+      - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
+      - docker push alcapone1933/composerize:builder
       - rm -fv composerize.tar.gz
       - docker create --name builder alcapone1933/composerize:builder
       - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
