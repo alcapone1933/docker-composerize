@@ -1,6 +1,7 @@
 FROM alcapone1933/ubuntu:22.04
 # AS builder
 LABEL maintainer="alcapone1933 alcapone1933@cosanostra-cloud.de"
+LABEL org.opencontainers.image.authors="alcapone1933"
 RUN apt-get update && \
     apt-get -y install \
     git jq make npm apache2 && \
