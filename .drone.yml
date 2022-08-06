@@ -99,6 +99,3 @@ trigger:
 
 depends_on:
   - BUILD-TEST
----
-
-...
