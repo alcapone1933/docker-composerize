@@ -1,0 +1,104 @@
+---
+kind: pipeline
+type: docker
+name: BUILD-TEST
+
+steps:
+  - name: Builder
+    image: alcapone1933/docker-dind:latest
+    volumes:
+      - name: dockersock
+        path: /var/run
+    commands:
+      - sleep 5
+      - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
+      - rm -fv composerize.tar.gz
+      - docker create --name builder alcapone1933/composerize:builder
+      - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
+      - docker rm -vf builder
+      - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
+  - name: Build Multi-arch
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
+      repo: alcapone1933/composerize
+      tags: latest
+      dry_run: true
+
+services:
+  - name: docker
+    image: alcapone1933/docker-dind:latest
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+volumes:
+  - name: dockersock
+    temp: {}
+
+trigger:
+  branch:
+  - master
+  event:
+  - custom
+
+---
+kind: pipeline
+type: docker
+name: BUILD
+
+steps:
+  - name: Builder
+    image: alcapone1933/docker-dind:latest
+    volumes:
+      - name: dockersock
+        path: /var/run
+    environment:    
+      DOCKER_USER:
+        from_secret: DOCKER_USER
+      DOCKER_PASS:
+        from_secret: DOCKER_PASS
+    commands:
+      - sleep 5
+      - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin      
+      - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder --push .
+      - rm -fv composerize.tar.gz
+      - docker create --name builder alcapone1933/composerize:builder
+      - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
+      - docker rm -vf builder
+      - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
+  - name: Build Multi-arch
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      username: 
+        from_secret: DOCKER_USER
+      password: 
+        from_secret: DOCKER_PASS    
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
+      repo: alcapone1933/composerize
+      tags: latest
+
+services:
+  - name: docker
+    image: alcapone1933/docker-dind:latest
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+volumes:
+  - name: dockersock
+    temp: {}
+  
+trigger:
+  branch:
+  - master
+  event:
+  - custom
+
+depends_on:
+  - BUILD-TEST
+---
+
+...
