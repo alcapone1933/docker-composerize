@@ -2,6 +2,7 @@
 # alcapone1933/composerize:builder
 FROM alcapone1933/ubuntu:22.04
 LABEL maintainer="alcapone1933 alcapone1933@cosanostra-cloud.de"
+LABEL org.opencontainers.image.authors="alcapone1933"
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && \
