@@ -1,6 +1,6 @@
 # Composerize
 [![Build Status](https://drone.docker-for-life.de/api/badges/alcapone1933/docker-composerize/status.svg)](https://drone.docker-for-life.de/alcapone1933/docker-composerize)
-[![Build Status Branch Master](https://shields.cosanostra-cloud.de/drone/build/alcapone1933/composerize/master?label=build%20%5Bbranch%20master%5D&server=https%3A%2F%2Fdrone.docker-for-life.de)](https://drone.docker-for-life.de/alcapone1933/docker-composerize/branches)
+[![Build Status Branch Master](https://shields.cosanostra-cloud.de/drone/build/alcapone1933/docker-composerize/master?label=build%20%5Bbrach%20master%5D&server=https%3A%2F%2Fdrone.docker-for-life.de)](https://drone.docker-for-life.de/alcapone1933/docker-composerize/branches)
 [![Docker Pulls](https://shields.cosanostra-cloud.de/docker/pulls/alcapone1933/composerize)](https://hub.docker.com/r/alcapone1933/composerize/tags)
 ![Docker Image Version (latest semver)](https://shields.cosanostra-cloud.de/docker/v/alcapone1933/composerize?sort=semver)
 
