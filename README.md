@@ -4,7 +4,7 @@
 [![Docker Pulls](https://shields.cosanostra-cloud.de/docker/pulls/alcapone1933/composerize)](https://hub.docker.com/r/alcapone1933/composerize/tags)
 ![Docker Image Version (latest semver)](https://shields.cosanostra-cloud.de/docker/v/alcapone1933/composerize?sort=semver)
 
-[![Composerize](https://raw.githubusercontent.com/alcapone1933/docker-composerize/master/img/docker-composerize.png)](https://www.composerize.com/)
+[![Composerize](/img/docker-composerize.png)](https://www.composerize.com/)
 ### FORK
 Docker Composerize the original is from github \
 https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
