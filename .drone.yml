@@ -39,9 +39,10 @@ volumes:
     temp: {}
 
 trigger:
-  event:
-  - push
-  - pull_request
+  ref:
+    - refs/heads/v1.1.0
+    - refs/tags/**
+    - refs/pull/**
 
 ---
 kind: pipeline
@@ -79,8 +80,8 @@ steps:
         from_secret: DOCKER_PASS    
       platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
       repo: alcapone1933/composerize
-      auto_tag: true
-      # tags: latest
+      # auto_tag: true
+      tags: v1.1.0
 
 services:
   - name: docker
@@ -95,7 +96,7 @@ volumes:
   
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/v1.1.0
     - refs/tags/**
     - refs/pull/**
 depends_on:
