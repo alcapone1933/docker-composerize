@@ -23,7 +23,8 @@ steps:
     settings:
       platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
       repo: alcapone1933/composerize
-      tags: latest
+      auto_tag: true
+      # tags: latest
       dry_run: true
 
 services:
@@ -38,10 +39,9 @@ volumes:
     temp: {}
 
 trigger:
-  branch:
-  - master
   event:
-  - custom
+  - push
+  - pull_request
 
 ---
 kind: pipeline
@@ -94,10 +94,9 @@ volumes:
     temp: {}
   
 trigger:
-  branch:
-  - master
-  event:
-  - custom
-
+  ref:
+    - refs/heads/master
+    - refs/tags/**
+    - refs/pull/**
 depends_on:
   - BUILD-TEST
