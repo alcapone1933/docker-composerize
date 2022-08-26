@@ -1,5 +1,5 @@
 # Composerize
-[![Composerize](https://raw.githubusercontent.com/alcapone1933/docker-composerize/master/img/composerize_demo.png)](https://www.composerize.com/)
+[![Composerize](/img/docker-composerize.png)](https://www.composerize.com/)
 ### FORK
 Docker Composerize the original is from github \
 https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
