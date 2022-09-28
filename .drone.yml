@@ -42,13 +42,13 @@ trigger:
   branch:
   - master
   event:
-  # - push
-  # - pull_request
-  - custom
+  - push
+  - pull_request
+
 ---
 kind: pipeline
 type: docker
-name: BUILD
+name: BUILD-Dockerhub
 
 steps:
   - name: Builder
@@ -96,13 +96,38 @@ volumes:
     temp: {}
   
 trigger:
-  branch:
-  - master
-  event:
-  - custom
-  # ref:
-  #   - refs/heads/master
-  #   - refs/tags/**
-  #   - refs/pull/**
+  ref:
+    - refs/heads/master
+    - refs/tags/**
+    - refs/pull/**
+
 depends_on:
   - BUILD-TEST
+
+---
+kind: pipeline
+type: docker
+name: BUILD-GitHub
+steps:
+  - name: Build Multi-arch
+    image: thegeeklab/drone-docker-buildx
+    privileged: true
+    settings:
+      username: 
+        from_secret: GITHUB_USER
+      password: 
+        from_secret: GITHUB_PASS    
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
+      registry: ghcr.io
+      repo: alcapone1933/composerize
+      auto_tag: true
+      # tags: latest
+
+trigger:
+  ref:
+    - refs/heads/master
+    - refs/tags/**
+    - refs/pull/**
+
+depends_on:
+  - BUILD-Dockerhub
