@@ -23,18 +23,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: docker:latest
-          shell: bash
-          run: |
-            apk add git
-            docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
-            rm -fv composerize.tar.gz
-            docker create --name builder alcapone1933/composerize:builder
-            docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
-            docker rm -vf builder
-            git add composerize.tar.gz && git commit -m "composerize.tar.gz"
+      - name: BUILDER
+        run: |
+          apt update && apt install curl git
+          curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+          docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
+          rm -fv composerize.tar.gz
+          docker create --name builder alcapone1933/composerize:builder
+          docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
+          docker rm -vf builder
+          git add composerize.tar.gz && git commit -m "composerize.tar.gz"
       # Get the repository's code
       - name: Checkout
         uses: actions/checkout@v2
