@@ -25,7 +25,8 @@ jobs:
     steps:
       - name: BUILDER
         run: |
-          apt update && apt install wget git
+          apt update
+          apt install wget git
           wget -q -O - https://raw.githubusercontent.com/alcapone1933/shell-scripts/master/install/docker-and-compose-debian-install.sh | bash
           docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
           rm -fv composerize.tar.gz
