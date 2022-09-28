@@ -1,15 +1,15 @@
 name: Github Build
 
 # Controls when the workflow will run
-# on:
-  # push:
-    # branches:
-      # - 'master'
-    # tags:
-      # - 'v*.*.*'
-  # pull_request:
-    # branches:
-      # - 'master'
+on:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    branches:
+      - 'master'
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
@@ -23,6 +23,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: BUILDER
+        run:
+          - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
+          - rm -fv composerize.tar.gz
+          - docker create --name builder alcapone1933/composerize:builder
+          - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
+          - docker rm -vf builder
+          - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
       # Get the repository's code
       - name: Checkout
         uses: actions/checkout@v2
@@ -59,4 +67,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
