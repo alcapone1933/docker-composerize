@@ -39,10 +39,12 @@ volumes:
     temp: {}
 
 trigger:
+  branch:
+  - master
   event:
-  - push
-  - pull_request
-
+  # - push
+  # - pull_request
+  - custom
 ---
 kind: pipeline
 type: docker
@@ -94,9 +96,13 @@ volumes:
     temp: {}
   
 trigger:
-  ref:
-    - refs/heads/master
-    - refs/tags/**
-    - refs/pull/**
+  branch:
+  - master
+  event:
+  - custom
+  # ref:
+  #   - refs/heads/master
+  #   - refs/tags/**
+  #   - refs/pull/**
 depends_on:
   - BUILD-TEST
