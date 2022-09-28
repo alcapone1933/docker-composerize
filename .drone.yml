@@ -119,9 +119,9 @@ steps:
         from_secret: GITHUB_PASS    
       platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
       registry: ghcr.io
-      repo: alcapone1933/composerize
+      repo: ghcr.io/alcapone1933/composerize
       auto_tag: true
-      # tags: latest
+      tags: latest
 
 trigger:
   ref:
