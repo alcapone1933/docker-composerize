@@ -18,7 +18,7 @@ steps:
       - docker rm -vf builder
       - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
   - name: Build Multi-arch
-    image: thegeeklab/drone-docker-buildx
+    image: alcapone1933/drone:docker-buildx
     privileged: true
     settings:
       platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
@@ -72,7 +72,7 @@ steps:
       - docker rm -vf builder
       - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
   - name: Build Multi-arch
-    image: thegeeklab/drone-docker-buildx
+    image: alcapone1933/drone:docker-buildx
     privileged: true
     settings:
       username: 
@@ -110,7 +110,7 @@ type: docker
 name: BUILD-GitHub
 steps:
   - name: Build Multi-arch
-    image: thegeeklab/drone-docker-buildx
+    image: alcapone1933/drone:docker-buildx
     privileged: true
     settings:
       username: 
