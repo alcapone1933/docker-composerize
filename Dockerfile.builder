@@ -25,6 +25,8 @@ RUN apt-get update && \
 COPY 000-default.conf /etc/apache2/sites-available/
 WORKDIR /var/www/
 EXPOSE 80
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["apache2ctl","-D","FOREGROUND"]
 
 # FROM alcapone1933/ubuntu:22.04

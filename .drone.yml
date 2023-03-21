@@ -21,7 +21,7 @@ steps:
     image: alcapone1933/drone:docker-buildx
     privileged: true
     settings:
-      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
       repo: alcapone1933/composerize
       auto_tag: true
       # tags: latest
@@ -71,7 +71,7 @@ steps:
       - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
       - docker rm -vf builder
       - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
-  - name: Build Multi-arch
+  - name: Build Multi-arch Dockerhub
     image: alcapone1933/drone:docker-buildx
     privileged: true
     settings:
@@ -79,10 +79,36 @@ steps:
         from_secret: DOCKER_USER
       password: 
         from_secret: DOCKER_PASS    
-      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
       repo: alcapone1933/composerize
       auto_tag: true
       # tags: latest
+  - name: Build Multi-arch Dockerhub Version
+    image: alcapone1933/drone:docker-buildx
+    privileged: true
+    settings:
+      username: 
+        from_secret: DOCKER_USER
+      password: 
+        from_secret: DOCKER_PASS    
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+      repo: alcapone1933/composerize
+      # tags: latest
+      auto_tag: true
+      auto_tag_suffix: v1.2.0
+  - name: Build Multi-arch GitHub
+    image: alcapone1933/drone:docker-buildx
+    privileged: true
+    settings:
+      username: 
+        from_secret: GITHUB_USER
+      password: 
+        from_secret: GITHUB_PASS    
+      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+      registry: ghcr.io
+      repo: ghcr.io/alcapone1933/composerize
+      auto_tag: true
+      tags: latest
 
 services:
   - name: docker
@@ -103,31 +129,3 @@ trigger:
 
 depends_on:
   - BUILD-TEST
-
----
-kind: pipeline
-type: docker
-name: BUILD-GitHub
-steps:
-  - name: Build Multi-arch
-    image: alcapone1933/drone:docker-buildx
-    privileged: true
-    settings:
-      username: 
-        from_secret: GITHUB_USER
-      password: 
-        from_secret: GITHUB_PASS    
-      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
-      registry: ghcr.io
-      repo: ghcr.io/alcapone1933/composerize
-      auto_tag: true
-      tags: latest
-
-trigger:
-  ref:
-    - refs/heads/master
-    - refs/tags/**
-    - refs/pull/**
-
-depends_on:
-  - BUILD-Dockerhub

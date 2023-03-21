@@ -16,4 +16,5 @@ COPY composerize.tar.gz /opt/
 RUN tar xfvz /opt/composerize.tar.gz -C /var/www/ && rm /opt/composerize.tar.gz
 WORKDIR /var/www/
 EXPOSE 80
+ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["apache2ctl","-D","FOREGROUND"]
