@@ -7,7 +7,8 @@
 [![Composerize](/img/docker-composerize.png)](https://www.composerize.com/)
 ### FORK
 Docker Composerize the original is from github \
-https://github.com/magicmark/composerize OR Here https://github.com/Griefed/docker-App-Collection \
+https://github.com/composerize/composerize
+
 #  Docker REPO
 https://hub.docker.com/r/alcapone1933/composerize
 * * *
