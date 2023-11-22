@@ -95,7 +95,7 @@ steps:
       repo: alcapone1933/composerize
       # tags: latest
       auto_tag: true
-      auto_tag_suffix: v1.4.1
+      auto_tag_suffix: v1.5.0
   - name: Build Multi-arch GitHub
     image: alcapone1933/drone:docker-buildx
     privileged: true
