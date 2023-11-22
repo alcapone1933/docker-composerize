@@ -9,7 +9,7 @@ RUN apt-get update && \
     rm -r /var/www/html  && \
     mkdir /composerize-website && \
     mkdir /git && \
-    git clone https://github.com/magicmark/composerize.git /git && \
+    git clone https://github.com/composerize/composerize.git /git && \
     cp -r /git/packages/composerize-website/. /composerize-website && \
     cd /composerize-website && \
     npm install yarn@1.19.1 -g && \
