@@ -44,6 +44,7 @@ trigger:
   event:
   - push
   - pull_request
+  - custom
 
 ---
 kind: pipeline
@@ -122,10 +123,14 @@ volumes:
     temp: {}
   
 trigger:
-  ref:
-    - refs/heads/master
-    - refs/tags/**
-    - refs/pull/**
+#  ref:
+#    - refs/heads/master
+#    - refs/tags/**
+#    - refs/pull/**
+  branch:
+  - master
+  event:
+  - custom
 
 depends_on:
   - BUILD-TEST

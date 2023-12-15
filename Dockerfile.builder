@@ -12,9 +12,9 @@ RUN cd /opt/composerize/packages/composerize-website && \
 #   npm install -g serve && \
     yarn add composerize && \
     make build
-EXPOSE 3000
+EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-p", "80", "-s", "build"]
 
 FROM --platform=linux/amd64 node:20-alpine3.18 AS decomposerize
 RUN  apk add --update --no-cache npm git make jq bash tini && \
@@ -29,10 +29,9 @@ RUN cd /opt/decomposerize/packages/decomposerize-website && \
 #   npm install -g serve && \
     yarn add decomposerize && \
     make build
-# EXPOSE 3000
+# EXPOSE 80
 # ENTRYPOINT ["/sbin/tini", "--"]
-# CMD ["serve", "-s", "build"]
-
+# CMD ["serve", "-p", "80", "-s", "build"]
 
 FROM --platform=linux/amd64 node:20-alpine3.18 AS composeverter
 RUN  apk add --update --no-cache npm git make jq bash tini && \
@@ -46,13 +45,18 @@ RUN cd /opt/composeverter/packages/composeverter-website && \
     sed -i "s,https://decomposerize.com,/decomposerize,g"  /opt/composeverter/packages/composeverter-website/src/components/Entry.js && \
 #    npm install -g serve && \
     make build
-# EXPOSE 3000
+# EXPOSE 80
 # ENTRYPOINT ["/sbin/tini", "--"]
-# CMD ["serve", "-s", "build"]
+# CMD ["serve", "-p", "80", "-s", "build"]
 
 FROM --platform=linux/amd64 alcapone1933/ubuntu:22.04
-LABEL maintainer="alcapone1933 alcapone1933@cosanostra-cloud.de"
-LABEL org.opencontainers.image.authors="alcapone1933"
+LABEL maintainer="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
+      org.opencontainers.image.created="$(date +%Y-%m-%d\ %H:%M)" \
+      org.opencontainers.image.authors="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
+      org.opencontainers.image.url="https://hub.docker.com/r/alcapone1933/composerize" \
+      org.opencontainers.image.ref.name="alcapone1933/composerize"
+ENV TZ=Europe/Berlin
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && \
     apt-get -y install apache2 && \
     rm /etc/apache2/sites-available/000-default.conf && \
