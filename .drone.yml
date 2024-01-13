@@ -11,10 +11,13 @@ steps:
         path: /var/run
     commands:
       - sleep 5
-      - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
+      - docker build --progress=plain -f builder.dockerfile -t alcapone1933/composerize:builder .
       - rm -fv composerize.tar.gz
       - docker create --name builder alcapone1933/composerize:builder
       - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
+      - docker build --progress=plain -f builder-single.dockerfile --target composerize -t alcapone1933/composerize:composerize .
+      - docker build --progress=plain -f builder-single.dockerfile --target decomposerize -t alcapone1933/composerize:decomposerize .
+      - docker build --progress=plain -f builder-single.dockerfile --target composeverter -t alcapone1933/composerize:composeverter .
       - docker rm -vf builder
       - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
   - name: Build Multi-arch
@@ -65,11 +68,13 @@ steps:
     commands:
       - sleep 5
       - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin      
-      - docker build --progress=plain -f Dockerfile.builder -t alcapone1933/composerize:builder .
-      - docker push alcapone1933/composerize:builder
+      - docker build --progress=plain -f builder.dockerfile -t alcapone1933/composerize:builder --push .
       - rm -fv composerize.tar.gz
       - docker create --name builder alcapone1933/composerize:builder
       - docker cp builder:/opt/composerize.tar.gz ./composerize.tar.gz
+      - docker build --progress=plain -f builder-single.dockerfile --target composerize -t alcapone1933/composerize:composerize --push .
+      - docker build --progress=plain -f builder-single.dockerfile --target decomposerize -t alcapone1933/composerize:decomposerize --push .
+      - docker build --progress=plain -f builder-single.dockerfile --target composeverter -t alcapone1933/composerize:composeverter --push .
       - docker rm -vf builder
       - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
   - name: Build Multi-arch Dockerhub
@@ -96,7 +101,7 @@ steps:
       repo: alcapone1933/composerize
       # tags: latest
       auto_tag: true
-      auto_tag_suffix: v1.6.0
+      auto_tag_suffix: v1.6.5
   - name: Build Multi-arch GitHub
     image: alcapone1933/drone:docker-buildx
     privileged: true

@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:16-alpine3.18 AS composerize
+FROM --platform=linux/amd64 node:20-alpine3.19 AS composerize
 RUN  apk add --update --no-cache npm git make jq bash tini && \
      rm -rf /var/cache/apk/* && \
      mkdir -p /opt/composerize && \
@@ -10,13 +10,13 @@ RUN cd /opt/composerize/packages/composerize-website && \
     sed -i "s,http://composeverter.com,/composeverter,g"  /opt/composerize/packages/composerize-website/src/components/Entry.js && \
 #   npm install yarn@1.19.1 -g && \
 #   npm install -g serve && \
-    yarn add composerize && \
+#   yarn add composerize && \
     make build
 EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["serve", "-p", "80", "-s", "build"]
 
-FROM --platform=linux/amd64 node:20-alpine3.18 AS decomposerize
+FROM --platform=linux/amd64 node:20-alpine3.19 AS decomposerize
 RUN  apk add --update --no-cache npm git make jq bash tini && \
      rm -rf /var/cache/apk/* && \
      mkdir -p /opt/decomposerize && \
@@ -27,13 +27,13 @@ RUN cd /opt/decomposerize/packages/decomposerize-website && \
     sed -i "s,https://composerize.com,/,g" /opt/decomposerize/packages/decomposerize-website/src/components/Entry.js && \
     sed -i "s,http://composeverter.com,/composeverter,g"  /opt/decomposerize/packages/decomposerize-website/src/components/Entry.js && \
 #   npm install -g serve && \
-    yarn add decomposerize && \
+#   yarn add decomposerize && \
     make build
 # EXPOSE 80
 # ENTRYPOINT ["/sbin/tini", "--"]
 # CMD ["serve", "-p", "80", "-s", "build"]
 
-FROM --platform=linux/amd64 node:20-alpine3.18 AS composeverter
+FROM --platform=linux/amd64 node:20-alpine3.19 AS composeverter
 RUN  apk add --update --no-cache npm git make jq bash tini && \
      rm -rf /var/cache/apk/* && \
      mkdir -p /opt/composeverter && \
