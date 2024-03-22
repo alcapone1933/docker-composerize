@@ -10,7 +10,7 @@ steps:
       - name: dockersock
         path: /var/run
     commands:
-      - sleep 5
+      - sleep 20
       - docker build --progress=plain -f builder.dockerfile -t alcapone1933/composerize:builder .
       - rm -fv composerize.tar.gz
       - docker create --name builder alcapone1933/composerize:builder
@@ -101,7 +101,7 @@ steps:
       repo: alcapone1933/composerize
       # tags: latest
       auto_tag: true
-      auto_tag_suffix: v1.6.7
+      auto_tag_suffix: v1.6.8
 
 services:
   - name: docker
