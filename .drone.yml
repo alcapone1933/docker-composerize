@@ -101,7 +101,7 @@ steps:
       repo: alcapone1933/composerize
       # tags: latest
       auto_tag: true
-      auto_tag_suffix: v1.6.8
+      auto_tag_suffix: v1.6.10
 
 services:
   - name: docker
