@@ -67,7 +67,9 @@ COPY 000-default.conf /etc/apache2/sites-available/
 COPY --from=composerize /opt/composerize/packages/composerize-website/build/ /var/www/
 COPY --from=decomposerize /opt/decomposerize/packages/decomposerize-website/build/ /var/www/decomposerize/
 COPY --from=composeverter /opt/composeverter/packages/composeverter-website/build/ /var/www/composeverter/
-RUN cd /var/www && tar cfvz /opt/composerize.tar.gz *
+RUN cd /var/www && tar cfvz /opt/composerize.tar.gz * && \
+    echo "ServerName default" > /etc/apache2/conf-available/servername.conf && \
+    a2enconf servername.conf
 WORKDIR /var/www/
 EXPOSE 80
 
