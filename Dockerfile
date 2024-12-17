@@ -16,7 +16,9 @@ RUN apt-get update && \
 COPY 000-default.conf /etc/apache2/sites-available/
 COPY composerize.tar.gz /opt/
 # COPY --from=alcapone1933/composerize:builder /opt/composerize.tar.gz /opt/
-RUN tar xfvz /opt/composerize.tar.gz -C /var/www/ && rm /opt/composerize.tar.gz
+RUN tar xfvz /opt/composerize.tar.gz -C /var/www/ && rm /opt/composerize.tar.gz && \
+    echo "ServerName default" > /etc/apache2/conf-available/servername.conf && \
+    a2enconf servername.conf
 WORKDIR /var/www/
 EXPOSE 80
 ENTRYPOINT ["/usr/bin/tini", "--"]
