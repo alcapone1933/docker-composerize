@@ -66,8 +66,9 @@ steps:
       DOCKER_PASS:
         from_secret: DOCKER_PASS
     commands:
-      - sleep 5
-      - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin      
+      - sleep 15
+      - docker-login.sh
+      # - echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin      
       - docker build --progress=plain -f builder.dockerfile -t alcapone1933/composerize:builder --push .
       - rm -fv composerize.tar.gz
       - docker create --name builder alcapone1933/composerize:builder
@@ -77,18 +78,18 @@ steps:
       - docker build --progress=plain -f builder-single.dockerfile --target composeverter -t alcapone1933/composerize:composeverter --push .
       - docker rm -vf builder
       - git add composerize.tar.gz && git commit -m "composerize.tar.gz"
-  - name: Build Multi-arch Dockerhub
-    image: alcapone1933/drone:docker-buildx
-    privileged: true
-    settings:
-      username: 
-        from_secret: DOCKER_USER
-      password: 
-        from_secret: DOCKER_PASS    
-      platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
-      repo: alcapone1933/composerize
-      auto_tag: true
-      # tags: latest
+  # - name: Build Multi-arch Dockerhub
+  #   image: alcapone1933/drone:docker-buildx
+  #   privileged: true
+  #   settings:
+  #     username: 
+  #       from_secret: DOCKER_USER
+  #     password: 
+  #       from_secret: DOCKER_PASS    
+  #     platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+  #     repo: alcapone1933/composerize
+  #     auto_tag: true
+  #     # tags: latest
   - name: Build Multi-arch Dockerhub Version
     image: alcapone1933/drone:docker-buildx
     privileged: true
@@ -101,7 +102,7 @@ steps:
       repo: alcapone1933/composerize
       # tags: latest
       auto_tag: true
-      auto_tag_suffix: v1.6.12
+      auto_tag_suffix: v1.7.0
 
 services:
   - name: docker
