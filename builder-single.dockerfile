@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:20-alpine3.20 AS composerize
+FROM --platform=linux/amd64 node:23-alpine3.21 AS composerize
 LABEL maintainer="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
       org.opencontainers.image.created="$(date +%Y-%m-%d\ %H:%M)" \
       org.opencontainers.image.authors="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
@@ -21,7 +21,7 @@ EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["serve", "-p", "80", "-s", "build"]
 
-FROM --platform=linux/amd64 node:20-alpine3.20 AS decomposerize
+FROM --platform=linux/amd64 node:23-alpine3.21 AS decomposerize
 LABEL maintainer="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
       org.opencontainers.image.created="$(date +%Y-%m-%d\ %H:%M)" \
       org.opencontainers.image.authors="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
@@ -43,7 +43,7 @@ EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["serve", "-p", "80", "-s", "build"]
 
-FROM --platform=linux/amd64 node:20-alpine3.20 AS composeverter
+FROM --platform=linux/amd64 node:23-alpine3.21 AS composeverter
 LABEL maintainer="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \
       org.opencontainers.image.created="$(date +%Y-%m-%d\ %H:%M)" \
       org.opencontainers.image.authors="alcapone1933 <alcapone1933@cosanostra-cloud.de>" \

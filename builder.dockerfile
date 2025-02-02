@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:20-alpine3.20 AS composerize
+FROM --platform=linux/amd64 node:23-alpine3.21 AS composerize
 RUN  apk add --update --no-cache npm git make jq bash tini && \
      rm -rf /var/cache/apk/* && \
      mkdir -p /opt/composerize && \
@@ -16,7 +16,7 @@ EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["serve", "-p", "80", "-s", "build"]
 
-FROM --platform=linux/amd64 node:20-alpine3.20 AS decomposerize
+FROM --platform=linux/amd64 node:23-alpine3.21 AS decomposerize
 RUN  apk add --update --no-cache npm git make jq bash tini && \
      rm -rf /var/cache/apk/* && \
      mkdir -p /opt/decomposerize && \
@@ -33,7 +33,7 @@ RUN cd /opt/decomposerize/packages/decomposerize-website && \
 # ENTRYPOINT ["/sbin/tini", "--"]
 # CMD ["serve", "-p", "80", "-s", "build"]
 
-FROM --platform=linux/amd64 node:20-alpine3.20 AS composeverter
+FROM --platform=linux/amd64 node:23-alpine3.21 AS composeverter
 RUN  apk add --update --no-cache npm git make jq bash tini && \
      rm -rf /var/cache/apk/* && \
      mkdir -p /opt/composeverter && \
